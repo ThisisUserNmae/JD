@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">JD</string>
+
+    <string-array name="name">
+
+
+        <item>sssssss</item>
+        <item>zhangsan</item>
+        <item>aaaaa</item>
+        <item>ddddss</item>
+        <item>fffsss</item>
+        <item>ffff</item>
+        <item>sssssss</item>
+        <item>sssssss</item>
+        <item>zhangsan</item>
+        <item>aaaaa</item>
+        <item>ddddss</item>
+        <item>fffsss</item>
+        <item>ffff</item>
+        <item>sssssss</item>
+        <item>sssssss</item>
+        <item>zhangsan</item>
+        <item>aaaaa</item>
+        <item>ddddss</item>
+        <item>fffsss</item>
+        <item>ffff</item>
+        <item>sssssss</item>
+
+    </string-array>
+
+</resources>
