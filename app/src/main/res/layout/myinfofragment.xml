@@ -23,17 +23,96 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sssssssss"
+            android:text="会飞的鱼"
             android:id="@+id/myinfo_name"
+            android:textSize="20dp"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             />
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="银牌"
+            android:textSize="20dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginLeft="10dp"
+
+            />
+
+        <ImageView
+
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/my_set_hei"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="60dp"
+
+            />
+
+        <ImageView
+
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/my_msg_hei"
+            android:layout_marginLeft="15dp"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#44f4"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/dfk"
+            android:layout_weight="1"
+            android:text="待付款"
+            android:gravity="center"
+            android:textSize="20dp"
+            />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/dsh"
+            android:layout_weight="1"
+            android:text="待付款"
+            android:gravity="center"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/sandian"
+            android:text="待付款"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/th_sh"
+            android:text="待付款"
+            android:gravity="center"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/mydd"
+            android:text="我的订单"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="20dp"
             />
 
     </LinearLayout>
