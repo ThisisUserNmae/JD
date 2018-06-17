@@ -83,8 +83,6 @@ public class HomeFragment extends Fragment implements IViewPagerView{
             }
         });
 
-
-
     }
 
     private void initViews() {
@@ -113,8 +111,6 @@ public class HomeFragment extends Fragment implements IViewPagerView{
 
             list.add(img);
 
-
-
         }
 
         homePresenter.gridViewPresenter(HttpConfig.PAGER_URL);
@@ -122,8 +118,6 @@ public class HomeFragment extends Fragment implements IViewPagerView{
         HomePagerAdapter adapter = new HomePagerAdapter(list);
 
         pager_home.setAdapter(adapter);
-
-
 
         h.sendEmptyMessageDelayed(0,2000);
 
@@ -173,4 +167,14 @@ public class HomeFragment extends Fragment implements IViewPagerView{
         }
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (isVisibleToUser){
+
+
+
+        }
+    }
 }

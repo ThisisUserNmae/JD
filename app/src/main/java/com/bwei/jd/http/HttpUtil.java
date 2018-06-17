@@ -24,7 +24,15 @@ public class HttpUtil {
 
     public static HttpUtil getInstance() {
         if (httpUtil == null) {
-            httpUtil = new HttpUtil();
+
+            synchronized (HttpUtil.class){
+                if (httpUtil == null) {
+
+                    return httpUtil = new HttpUtil();
+                }
+
+            }
+
         }
         return httpUtil;
     }
