@@ -1,4 +1,4 @@
-package com.bwei.jd.mvp.myinfo.model;
+package com.bwei.jd.mvp.myinfo.model.bean;
 
 public class LoginBean {
 
