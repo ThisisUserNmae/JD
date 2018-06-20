@@ -13,4 +13,11 @@ public interface IViewPagerView {
     void getGridViewSuccess(String json);
 
     void getGridViewError(String error);
+
+    void getRecyclerViewSuccess(String json);
+
+    void getRecyclerViewError(String error);
+
+
+
 }
