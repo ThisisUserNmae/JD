@@ -30,4 +30,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.4'
 
     implementation files('libs/universal-image-loader-1.9.5.jar')
+
+
+    //recyclerView的依赖
+    compile 'com.android.support:recyclerview-v7:26+'
 }

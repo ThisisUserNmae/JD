@@ -72,4 +72,32 @@ public class HomePresenter {
 
     }
 
+    public void RecyclerViewPresenter(String url){
+
+        homeModel.RecyclerViewModel(url, new HomeModel.IRecyclerViewModel() {
+            @Override
+            public void getRecyclerViewSuccess(String json) {
+
+                if (iViewPagerView !=null){
+
+                    iViewPagerView.getRecyclerViewSuccess(json);
+
+                }
+
+            }
+
+            @Override
+            public void getRecyclerViewError(String error) {
+
+                if (iViewPagerView !=null){
+
+                    iViewPagerView.getRecyclerViewError(error);
+
+                }
+
+            }
+        });
+
+    }
+
 }

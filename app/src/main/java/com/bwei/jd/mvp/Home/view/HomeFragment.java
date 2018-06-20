@@ -12,6 +12,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +25,12 @@ import com.bwei.jd.R;
 import com.bwei.jd.app.MyApp;
 import com.bwei.jd.http.HttpConfig;
 import com.bwei.jd.mvp.Home.model.Home_ViewPagerBean;
+import com.bwei.jd.mvp.Home.model.RecyclerViewBean;
 import com.bwei.jd.mvp.Home.presenter.HomePresenter;
 import com.bwei.jd.mvp.Home.view.adapter.HomePagerAdapter;
 import com.bwei.jd.mvp.Home.view.adapter.Home_GridViewAdapter;
+import com.bwei.jd.mvp.Home.view.adapter.Home_MiaoSha_RecyclerView;
+import com.bwei.jd.mvp.Home.view.adapter.Home_MiaoSha_RecyclerView02;
 import com.bwei.jd.mvp.Home.view.iview.IViewPagerView;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -33,7 +39,7 @@ import com.xys.libzxing.zxing.activity.CaptureActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements IViewPagerView{
+public class HomeFragment extends Fragment implements IViewPagerView {
 
     private View view;
 
@@ -47,15 +53,17 @@ public class HomeFragment extends Fragment implements IViewPagerView{
 
     private MyHandler h = new MyHandler();
 
-    private MyGridView  home_gv;
+    private MyGridView home_gv;
+    private RecyclerView home_miaosha_recyclerview;
+    private RecyclerView recyclerview;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.homefragment,null);
+        view = inflater.inflate(R.layout.homefragment, null);
 
-        homePresenter =new HomePresenter(this);
+        homePresenter = new HomePresenter(this);
 
         initViews();
 
@@ -83,6 +91,8 @@ public class HomeFragment extends Fragment implements IViewPagerView{
             }
         });
 
+       // homePresenter.RecyclerViewPresenter(HttpConfig.RECYCLERVIEW_URL);
+
     }
 
     private void initViews() {
@@ -93,7 +103,12 @@ public class HomeFragment extends Fragment implements IViewPagerView{
 
         home_gv = view.findViewById(R.id.home_gv);
 
+        home_miaosha_recyclerview = view.findViewById(R.id.home_miaosha_recyclerview);
+
+        recyclerview = view.findViewById(R.id.recyclerview);
+
         homePresenter.pagerModel();
+
     }
 
     @Override
@@ -107,7 +122,7 @@ public class HomeFragment extends Fragment implements IViewPagerView{
 
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-            ImageLoader.getInstance().displayImage(icon,img, MyApp.getOptions());
+            ImageLoader.getInstance().displayImage(icon, img, MyApp.getOptions());
 
             list.add(img);
 
@@ -119,7 +134,11 @@ public class HomeFragment extends Fragment implements IViewPagerView{
 
         pager_home.setAdapter(adapter);
 
-        h.sendEmptyMessageDelayed(0,2000);
+
+
+        h.sendEmptyMessageDelayed(0, 2000);
+
+
 
     }
 
@@ -127,11 +146,12 @@ public class HomeFragment extends Fragment implements IViewPagerView{
     public void getError(String error) {
 
 
-
     }
 
     @Override
     public void getGridViewSuccess(String json) {
+
+
 
         Gson g = new Gson();
 
@@ -139,9 +159,25 @@ public class HomeFragment extends Fragment implements IViewPagerView{
 
         List<Home_ViewPagerBean.TuijianBean.ListBean> list = home_viewPagerBean.getTuijian().getList();
 
-        Home_GridViewAdapter adapter = new Home_GridViewAdapter(list,getActivity());
+        Home_GridViewAdapter adapter = new Home_GridViewAdapter(list, getActivity());
+
+        List<Home_ViewPagerBean.MiaoshaBean.ListBeanX> list1 = home_viewPagerBean.getMiaosha().getList();
+
+        Home_MiaoSha_RecyclerView miaoSha_recyclerView = new Home_MiaoSha_RecyclerView(list1);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
+
+        gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        home_miaosha_recyclerview.setLayoutManager(gridLayoutManager);
+
+
+
+        home_miaosha_recyclerview.setAdapter(miaoSha_recyclerView);
 
         home_gv.setAdapter(adapter);
+
+
 
     }
 
@@ -149,20 +185,44 @@ public class HomeFragment extends Fragment implements IViewPagerView{
     public void getGridViewError(String error) {
 
 
+    }
+
+    @Override
+    public void getRecyclerViewSuccess(String json) {
+
+        Gson g = new Gson();
+
+        RecyclerViewBean recyclerViewBean = g.fromJson(json, RecyclerViewBean.class);
+
+        List<RecyclerViewBean.DataBean> data = recyclerViewBean.getData();
+
+        Home_MiaoSha_RecyclerView02 miaoSha_recyclerView02 = new Home_MiaoSha_RecyclerView02(data);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+
+        recyclerview.setLayoutManager(gridLayoutManager);
+
+        recyclerview.setAdapter(miaoSha_recyclerView02);
 
     }
 
-    class MyHandler extends Handler{
+    @Override
+    public void getRecyclerViewError(String error) {
+
+
+    }
+
+    class MyHandler extends Handler {
 
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            int num = pager_home.getCurrentItem()+1;
+            int num = pager_home.getCurrentItem() + 1;
 
             pager_home.setCurrentItem(num);
 
-            h.sendEmptyMessageDelayed(0,2000);
+            h.sendEmptyMessageDelayed(0, 2000);
 
         }
     }
@@ -171,8 +231,7 @@ public class HomeFragment extends Fragment implements IViewPagerView{
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
 
-        if (isVisibleToUser){
-
+        if (isVisibleToUser) {
 
 
         }

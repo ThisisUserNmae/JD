@@ -90,6 +90,38 @@ public class HomeModel {
 
     }
 
+    public void RecyclerViewModel(String url, final IRecyclerViewModel iRecyclerViewModel){
+
+        HttpUtil instance = HttpUtil.getInstance();
+
+        instance.get(url);
+
+        instance.setHttpUtilListance(new HttpUtil.HttpUtilListance() {
+            @Override
+            public void getSuccess(String json) {
+
+                if (iRecyclerViewModel!=null){
+
+                    iRecyclerViewModel.getRecyclerViewSuccess(json);
+
+                }
+
+            }
+
+            @Override
+            public void getError(String error) {
+
+                if (iRecyclerViewModel!=null){
+
+                    iRecyclerViewModel.getRecyclerViewError(error);
+
+                }
+
+            }
+        });
+
+    }
+
     public interface IViewPagerModel{
 
         void getSuccess(List<Home_ViewPagerBean.DataBean> data);
@@ -103,6 +135,14 @@ public class HomeModel {
         void getGridViewSuccess(String json);
 
         void getGridViewError(String error);
+
+    }
+
+    public interface IRecyclerViewModel{
+
+        void getRecyclerViewSuccess(String json);
+
+        void getRecyclerViewError(String error);
 
     }
 
