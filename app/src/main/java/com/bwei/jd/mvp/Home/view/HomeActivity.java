@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.RadioGroup;
 
 import com.bwei.jd.R;
-import com.bwei.jd.mvp.classify.view.ClassifyFragment;
+import com.bwei.jd.mvp.classify.view.fragment.ClassifyFragment;
 import com.bwei.jd.mvp.homepage.view.adapter.HomePager_MyViewPagerFragmentAdapter;
 import com.bwei.jd.mvp.myinfo.view.MyInfoFragment;
 import com.bwei.jd.mvp.shoppingcar.view.ShoppingCarFragment;
