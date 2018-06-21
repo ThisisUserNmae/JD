@@ -45,7 +45,8 @@ public class HttpUtil {
                 try {
                     URL u = new URL(url);
                     HttpURLConnection connection = (HttpURLConnection) u.openConnection();
-                    connection.setReadTimeout(3000);
+                    connection.setReadTimeout(8000);
+                    connection.setConnectTimeout(8000);
                     int code = connection.getResponseCode();
                     if (code == 200) {
                         InputStream inputStream = connection.getInputStream();

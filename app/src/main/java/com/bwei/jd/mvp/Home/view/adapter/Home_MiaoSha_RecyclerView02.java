@@ -24,7 +24,6 @@ public class Home_MiaoSha_RecyclerView02 extends RecyclerView.Adapter<Home_MiaoS
         this.list = list;
     }
 
-
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -60,7 +59,7 @@ public class Home_MiaoSha_RecyclerView02 extends RecyclerView.Adapter<Home_MiaoS
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            item_img = itemView.findViewById(R.id.item_img);
+            item_img = itemView.findViewById(R.id.item_img02);
 
             item_title = itemView.findViewById(R.id.item_title);
 

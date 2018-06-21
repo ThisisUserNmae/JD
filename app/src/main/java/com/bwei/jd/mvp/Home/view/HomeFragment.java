@@ -54,7 +54,9 @@ public class HomeFragment extends Fragment implements IViewPagerView {
     private MyHandler h = new MyHandler();
 
     private MyGridView home_gv;
+
     private RecyclerView home_miaosha_recyclerview;
+
     private RecyclerView recyclerview;
 
     @Nullable
@@ -91,7 +93,7 @@ public class HomeFragment extends Fragment implements IViewPagerView {
             }
         });
 
-       // homePresenter.RecyclerViewPresenter(HttpConfig.RECYCLERVIEW_URL);
+
 
     }
 
@@ -134,11 +136,7 @@ public class HomeFragment extends Fragment implements IViewPagerView {
 
         pager_home.setAdapter(adapter);
 
-
-
         h.sendEmptyMessageDelayed(0, 2000);
-
-
 
     }
 
@@ -171,13 +169,11 @@ public class HomeFragment extends Fragment implements IViewPagerView {
 
         home_miaosha_recyclerview.setLayoutManager(gridLayoutManager);
 
-
-
         home_miaosha_recyclerview.setAdapter(miaoSha_recyclerView);
 
         home_gv.setAdapter(adapter);
 
-
+            homePresenter.RecyclerViewPresenter(HttpConfig.RECYCLERVIEW_URL);
 
     }
 
@@ -199,6 +195,8 @@ public class HomeFragment extends Fragment implements IViewPagerView {
         Home_MiaoSha_RecyclerView02 miaoSha_recyclerView02 = new Home_MiaoSha_RecyclerView02(data);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+
+        gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         recyclerview.setLayoutManager(gridLayoutManager);
 
