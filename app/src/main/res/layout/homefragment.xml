@@ -50,7 +50,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="#44ff"
                 >
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -67,13 +66,11 @@
                 android:gravity="center"
                 android:text="ssssss"
                 android:textSize="20dp"
-                android:background="#ff0000"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="#44f"
                 >
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
