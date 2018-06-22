@@ -79,6 +79,8 @@ public class BaseExpandableListView extends BaseExpandableListAdapter {
 
             groupHolder.el_title = convertView.findViewById(R.id.el_title);
 
+            groupHolder.el_title.setTextSize(30);
+
             convertView.setTag(groupHolder);
 
         } else {

@@ -4,9 +4,9 @@ import android.util.Log;
 
 import com.bwei.jd.http.HttpConfig;
 import com.bwei.jd.http.HttpUtil;
+import com.bwei.jd.http.OkhtttpUtils;
 
 public class ClasslyModel {
-
 
     private static final String TAG = "ClasslyModel---";
 
@@ -44,32 +44,23 @@ public class ClasslyModel {
 
     public void right_el(int cid, final IRightEl iRightEl) {
 
-        HttpUtil instance = HttpUtil.getInstance();
+        OkhtttpUtils instance = OkhtttpUtils.getInstance();
 
-        instance.get(HttpConfig.PRODUCTCHILD + "?cid=" + cid);
-
-        instance.setHttpUtilListance(new HttpUtil.HttpUtilListance() {
+        instance.doGet(HttpConfig.PRODUCTCHILD + "?cid=" + cid, new OkhtttpUtils.OkCallback() {
             @Override
-            public void getSuccess(String json) {
+            public void onFailure(Exception e) {
 
-                if (iRightEl != null) {
+            }
 
-                    Log.d(TAG, "getSuccess: " + json);
+            @Override
+            public void onResponse(String json) {
+
+                if (iRightEl!=null){
 
                     iRightEl.getElSuccess(json);
 
                 }
 
-            }
-
-            @Override
-            public void getError(String error) {
-
-                if (iRightEl != null) {
-
-                    iRightEl.getElError(error);
-
-                }
 
             }
         });

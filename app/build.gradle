@@ -34,4 +34,11 @@ dependencies {
 
     //recyclerView的依赖
     compile 'com.android.support:recyclerview-v7:26+'
+
+
+
+    implementation 'com.squareup.okhttp3:okhttp:3.2.0'
+
+//interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 }

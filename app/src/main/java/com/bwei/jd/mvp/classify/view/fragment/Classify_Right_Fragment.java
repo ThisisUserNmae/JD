@@ -56,18 +56,28 @@ public class Classify_Right_Fragment extends Fragment implements IClasslyView {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Bundle arguments = getArguments();
-
-        cid = arguments.getInt("cid");
-
-        Toast.makeText(getContext(), "" + cid, Toast.LENGTH_SHORT).show();
 
         classlyPressenter.right_el(cid);
+
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+    }
+
+
+
 
     private void initViews() {
 
         right_el = view.findViewById(R.id.right_el);
+
+        Bundle arguments = getArguments();
+
+        cid = arguments.getInt("cid");
 
     }
 
@@ -98,17 +108,23 @@ public class Classify_Right_Fragment extends Fragment implements IClasslyView {
 
         Product_Children product_children = g.fromJson(json, Product_Children.class);
 
-        List<Product_Children.DataBean> data = product_children.getData();
 
-        for (int i = 0; i < data.size(); i++) {
+        if (product_children.getCode().equals("0")){
 
-            Log.d(TAG, "getElSuccess: 您进循环了");
 
-            String productName = data.get(i).getName();
+            List<Product_Children.DataBean> data = product_children.getData();
 
-            product.add(productName);
+            for (int i = 0; i < data.size(); i++) {
+
+                Log.d(TAG, "getElSuccess: 您进循环了");
+
+                String productName = data.get(i).getName();
+
+                product.add(productName);
 
             List<Product_Children.DataBean.ListBean> list = data.get(i).getList();
+
+            Log.d(TAG, "getElSuccess: " + list.size());
 
             List<String> list_name = new ArrayList<>();
             List<String> list_img = new ArrayList<>();
@@ -118,18 +134,30 @@ public class Classify_Right_Fragment extends Fragment implements IClasslyView {
                 list_name.add(list.get(j).getName());
                 list_img.add(list.get(j).getIcon());
 
-                Log.d(TAG, "getElSuccess: " + list_name.size());
-
             }
 
             childName.add(list_name);
             childImg.add(list_img);
 
+            }
+
+            BaseExpandableListAdapter adapter = new BaseExpandableListView(getActivity(), product, childName, childImg);
+
+            right_el.setAdapter(adapter);
+
+            int count = right_el.getCount();
+
+            for (int i = 0; i < count; i++) {
+
+                right_el.expandGroup(i);
+
+            }
+
+        }else{
+
+            Toast.makeText(getActivity(),"您的请求失败了",Toast.LENGTH_LONG).show();
+
         }
-
-        BaseExpandableListAdapter adapter = new BaseExpandableListView(getActivity(), product, childName, childImg);
-
-        right_el.setAdapter(adapter);
 
     }
 
@@ -139,4 +167,19 @@ public class Classify_Right_Fragment extends Fragment implements IClasslyView {
 
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (isVisibleToUser){
+            classlyPressenter.right_el(cid);
+
+        }else{
+
+            product.clear();
+            childName.clear();
+            childImg.clear();
+
+        }
+    }
 }
