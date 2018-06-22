@@ -231,6 +231,7 @@ public class HomeFragment extends Fragment implements IViewPagerView {
 
         if (isVisibleToUser) {
 
+        }else{
 
         }
     }
