@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.bwei.jd.R;
-import com.bwei.jd.mvp.Home.view.HomeActivity;
+import com.bwei.jd.mvp.Home.view.activity.HomeActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;

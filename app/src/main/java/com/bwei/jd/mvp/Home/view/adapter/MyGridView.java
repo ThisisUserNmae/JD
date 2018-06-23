@@ -1,4 +1,4 @@
-package com.bwei.jd.mvp.Home.view;
+package com.bwei.jd.mvp.Home.view.adapter;
 
 import android.content.Context;
 import android.util.AttributeSet;

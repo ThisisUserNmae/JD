@@ -1,12 +1,14 @@
-package com.bwei.jd.mvp.Home.view;
+package com.bwei.jd.mvp.Home.view.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.RadioGroup;
 
 import com.bwei.jd.R;
+import com.bwei.jd.mvp.Home.view.fragment.HomeFragment;
 import com.bwei.jd.mvp.classify.view.fragment.ClassifyFragment;
 import com.bwei.jd.mvp.homepage.view.adapter.HomePager_MyViewPagerFragmentAdapter;
 import com.bwei.jd.mvp.myinfo.view.MyInfoFragment;
@@ -27,6 +29,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         initViews();
 
