@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias '1'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.bwei.jd"
@@ -14,6 +19,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            renderscriptDebuggable true
         }
     }
 }
@@ -28,17 +34,19 @@ dependencies {
     implementation project(':libzxing')
     //gson
     implementation 'com.google.code.gson:gson:2.8.4'
-
     implementation files('libs/universal-image-loader-1.9.5.jar')
-
-
     //recyclerView的依赖
     compile 'com.android.support:recyclerview-v7:26+'
-
-
-
     implementation 'com.squareup.okhttp3:okhttp:3.2.0'
-
-//interceptor
+    //interceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    implementation files('libs/umeng-common-1.5.3.jar')
+    implementation files('src/main/libs/umeng-share-core-6.9.2.jar')
+    implementation files('src/main/libs/umeng-share-QQ-simplify-6.9.2.jar')
+    implementation files('src/main/libs/umeng-share-sina-simplify-6.9.2.jar')
+    implementation files('src/main/libs/umeng-share-wechat-simplify-6.9.2.jar')
+    implementation files('src/main/libs/umeng-sharetool-6.9.2.jar')
+
+
+
 }

@@ -1,4 +1,4 @@
-package com.bwei.jd.mvp.Home.view;
+package com.bwei.jd.mvp.Home.view.fragment;
 
 import android.Manifest;
 import android.content.Intent;
@@ -18,7 +18,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.bwei.jd.R;
@@ -31,6 +30,7 @@ import com.bwei.jd.mvp.Home.view.adapter.HomePagerAdapter;
 import com.bwei.jd.mvp.Home.view.adapter.Home_GridViewAdapter;
 import com.bwei.jd.mvp.Home.view.adapter.Home_MiaoSha_RecyclerView;
 import com.bwei.jd.mvp.Home.view.adapter.Home_MiaoSha_RecyclerView02;
+import com.bwei.jd.mvp.Home.view.adapter.MyGridView;
 import com.bwei.jd.mvp.Home.view.iview.IViewPagerView;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -62,6 +62,9 @@ public class HomeFragment extends Fragment implements IViewPagerView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
+
 
         view = inflater.inflate(R.layout.homefragment, null);
 

@@ -1,5 +1,8 @@
 package com.bwei.jd.mvp.myinfo.view;
 
+import android.Manifest;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +18,11 @@ import com.bwei.jd.mvp.myinfo.model.bean.LoginBean;
 import com.bwei.jd.mvp.myinfo.presenter.LoginPresenter;
 import com.bwei.jd.mvp.myinfo.view.iview.ILoginView;
 import com.google.gson.Gson;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements ILoginView,View.OnClickListener {
 
@@ -25,6 +33,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView,View.
     private Button btn_login;
 
     private ImageView qq_img,weixin_img,my_img;
+
+    private UMShareAPI mShareAPI;
 
     private LoginPresenter loginPresenter;
 
@@ -62,6 +72,13 @@ public class LoginActivity extends AppCompatActivity implements ILoginView,View.
 
         btn_login.setOnClickListener(this);
 
+        mShareAPI =  UMShareAPI.get(LoginActivity.this);
+
+        qq_img.setOnClickListener(this);
+
+        weixin_img.setOnClickListener(this);
+
+        my_img.setOnClickListener(this);
     }
 
     @Override
@@ -123,6 +140,13 @@ public class LoginActivity extends AppCompatActivity implements ILoginView,View.
 
             case R.id.qq_img:
 
+                if(Build.VERSION.SDK_INT>=23){
+                    String[] mPermissionList = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.CALL_PHONE,Manifest.permission.READ_LOGS,Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.SET_DEBUG_APP,Manifest.permission.SYSTEM_ALERT_WINDOW,Manifest.permission.GET_ACCOUNTS,Manifest.permission.WRITE_APN_SETTINGS};
+                    ActivityCompat.requestPermissions(LoginActivity.this,mPermissionList,123);
+                }
+
+                mShareAPI.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.QQ, authListener);
+
                 break;
 
             case R.id.weixin_img:
@@ -136,4 +160,59 @@ public class LoginActivity extends AppCompatActivity implements ILoginView,View.
         }
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+
+
+
+    }
+
+    UMAuthListener authListener = new UMAuthListener() {
+        /**
+         * @desc 授权开始的回调
+         * @param platform 平台名称
+         */
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+
+        }
+
+        /**
+         * @desc 授权成功的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         * @param data 用户资料返回
+         */
+        @Override
+        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+
+            Toast.makeText(LoginActivity.this, "成功了", Toast.LENGTH_LONG).show();
+
+        }
+
+        /**
+         * @desc 授权失败的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         * @param t 错误原因
+         */
+        @Override
+        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+
+            Toast.makeText(LoginActivity.this, "失败：" + t.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
+
+        /**
+         * @desc 授权取消的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         */
+        @Override
+        public void onCancel(SHARE_MEDIA platform, int action) {
+            Toast.makeText(LoginActivity.this, "取消了", Toast.LENGTH_LONG).show();
+        }
+    };
+
 }
