@@ -63,9 +63,6 @@ public class HomeFragment extends Fragment implements IViewPagerView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
-
-
         view = inflater.inflate(R.layout.homefragment, null);
 
         homePresenter = new HomePresenter(this);
@@ -236,6 +233,8 @@ public class HomeFragment extends Fragment implements IViewPagerView {
 
         }else{
 
+            list.clear();
+            h.removeCallbacksAndMessages(null);
         }
     }
 }

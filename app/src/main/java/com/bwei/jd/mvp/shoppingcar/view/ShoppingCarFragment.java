@@ -24,6 +24,22 @@ import java.util.List;
 
 public class ShoppingCarFragment extends Fragment implements IShoppingView,View.OnClickListener{
 
+    /**
+     *
+     * 错误总结 :
+     *
+     *           现象: 程序第一次加载时 加载首页Fragment 再一次点击 ShoppingCarFragment时 会报一个请求数据的空指针的异常
+     *
+     *           原因: 原因在于 加载第三个ShoppingFragment时 先走的 懒加载的方法 并没有获取
+     *           ShoppingPresenter实例化的对象 直接走了Presenter 请求数据的方法
+     *
+     *           解决错误: 在onCreateView 方法中 进行判断 ShoppingPresenter实例化的对象引用是否为空
+     *           如果为空 实例化一个对象 再做请求数据的操作
+     *           懒加载中 也要判断ShooppingPresneter 对象是否不为空  不为空 再去请求数据
+     *
+     */
+
+
     private static final String TAG = "ShoppingCarFragment--";
 
     private View view;
@@ -70,7 +86,13 @@ public class ShoppingCarFragment extends Fragment implements IShoppingView,View.
         shopping_cb.setOnClickListener(this);
 
         //实例化ShoppingPresenter 对象
-        shoppingPresenter = new ShoppingPresenter(this);
+
+        if (shoppingPresenter == null){
+
+            shoppingPresenter = new ShoppingPresenter(this);
+
+            shoppingPresenter.shooppingPresenter(HttpConfig.PRODUCT_URL);
+        }
 
     }
 
@@ -164,10 +186,9 @@ public class ShoppingCarFragment extends Fragment implements IShoppingView,View.
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && shoppingPresenter !=null){
+            Log.d(TAG, "isVisibleToUser && shoppingPresenter !=null");
 
-        if (isVisibleToUser){
-
-            Log.d(TAG, "setUserVisibleHint: 我先进入的");
 
             shoppingPresenter.shooppingPresenter(HttpConfig.PRODUCT_URL);
 
