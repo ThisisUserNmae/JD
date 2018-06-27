@@ -9,4 +9,6 @@ public class HttpConfig {
     public final static  String RECYCLERVIEW_URL = "https://www.zhaoapi.cn/product/getCatagory";
     public final static String PRODUCTCHILD = "https://www.zhaoapi.cn/product/getProductCatagory";
 
+    public final static String PRODUCT_URL = "https://www.zhaoapi.cn/product/getCarts?uid=71";
+
 }
