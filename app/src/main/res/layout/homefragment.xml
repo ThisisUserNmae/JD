@@ -99,8 +99,6 @@
                 android:entries="@array/name"
                 />
 
-
-
         </LinearLayout>
 
     </ScrollView>

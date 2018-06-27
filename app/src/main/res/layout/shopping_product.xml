@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Cb_product"
+            android:layout_marginTop="25dp"
+            />
+        <ImageView
+            android:layout_toRightOf="@+id/Cb_product"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/img_product"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/ic_launcher"
+            />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_product_title"
+        android:maxLines="2"
+        android:textSize="20dp"
+        android:ellipsize="end"
+        android:text="aaaaaaaaa"
+        android:layout_toRightOf="@+id/img_product"
+        android:layout_marginLeft="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_product_price"
+        android:textSize="25dp"
+        android:textColor="#f00000"
+        android:text="aaaaa"
+        android:layout_below="@id/tv_product_title"
+        android:layout_toRightOf="@+id/img_product"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+
+        />
+
+    <com.bwei.jd.mvp.shoppingcar.view.MyView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+
+
+        android:layout_marginTop="50dp"
+        android:id="@+id/product_MyView"
+        />
+
+</RelativeLayout>
