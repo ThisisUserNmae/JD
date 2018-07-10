@@ -94,7 +94,6 @@ public class HomeFragment extends Fragment implements IViewPagerView {
         });
 
 
-
     }
 
     private void initViews() {
@@ -149,8 +148,6 @@ public class HomeFragment extends Fragment implements IViewPagerView {
     @Override
     public void getGridViewSuccess(String json) {
 
-
-
         Gson g = new Gson();
 
         Home_ViewPagerBean home_viewPagerBean = g.fromJson(json, Home_ViewPagerBean.class);
@@ -173,7 +170,7 @@ public class HomeFragment extends Fragment implements IViewPagerView {
 
         home_gv.setAdapter(adapter);
 
-            homePresenter.RecyclerViewPresenter(HttpConfig.RECYCLERVIEW_URL);
+        homePresenter.RecyclerViewPresenter(HttpConfig.RECYCLERVIEW_URL);
 
     }
 
@@ -194,7 +191,7 @@ public class HomeFragment extends Fragment implements IViewPagerView {
 
         Home_MiaoSha_RecyclerView02 miaoSha_recyclerView02 = new Home_MiaoSha_RecyclerView02(data);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
 
         gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
@@ -206,7 +203,6 @@ public class HomeFragment extends Fragment implements IViewPagerView {
 
     @Override
     public void getRecyclerViewError(String error) {
-
 
     }
 
@@ -225,16 +221,4 @@ public class HomeFragment extends Fragment implements IViewPagerView {
         }
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        if (isVisibleToUser) {
-
-        }else{
-
-            list.clear();
-            h.removeCallbacksAndMessages(null);
-        }
-    }
 }

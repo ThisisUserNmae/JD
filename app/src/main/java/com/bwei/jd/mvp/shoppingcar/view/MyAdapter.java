@@ -20,8 +20,6 @@ public class MyAdapter extends BaseExpandableListAdapter {
     private Context context;
 
     private List<ShoppingCarBean.DataBean> list;
-    private boolean allCheckboxSelected;
-    private boolean allProductSelected;
 
     public MyAdapter(Context context, List<ShoppingCarBean.DataBean> list) {
         this.context = context;
@@ -86,6 +84,7 @@ public class MyAdapter extends BaseExpandableListAdapter {
             shopsViewHolder = (ShopsViewHolder) convertView.getTag();
 
         }
+
 
         shopsViewHolder.shops_Name.setText(list.get(groupPosition).getSellerName());
 
@@ -182,9 +181,9 @@ public class MyAdapter extends BaseExpandableListAdapter {
 
         ShoppingCarBean.DataBean dataBean = list.get(groupPosition);
 
-        List<ShoppingCarBean.DataBean.ListBean> list = dataBean.getList();
+        List<ShoppingCarBean.DataBean.ListBean> list1 = dataBean.getList();
 
-        for (ShoppingCarBean.DataBean.ListBean listBean : list){
+        for (ShoppingCarBean.DataBean.ListBean listBean : list1){
 
             if (listBean.getSelected() == 0){
 
@@ -285,6 +284,7 @@ public class MyAdapter extends BaseExpandableListAdapter {
     }
 
     public void changeCurrentProductStatus(int groupPosition, int childPosition) {
+
         List<ShoppingCarBean.DataBean.ListBean> list = this.list.get(groupPosition).getList();
 
         ShoppingCarBean.DataBean.ListBean listBean = list.get(childPosition);

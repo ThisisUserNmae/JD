@@ -4,11 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
-/**
- * @Author JenSenLeung.
- * @Time 2018/6/16 下午 2:35.
- * @Description This is ShowAllShopsType_list_grid.
- */
 public class MyGridView extends GridView {
     public MyGridView(Context context) {
         super(context);

@@ -25,6 +25,7 @@ public class MyView extends LinearLayout implements View.OnClickListener{
     public void setNumber(int number) {
         this.number = number;
         tv_number.setText(number+"");
+
     }
 
     public MyView(Context context) {
@@ -87,6 +88,8 @@ public class MyView extends LinearLayout implements View.OnClickListener{
                     }
 
                 }
+
+
 
                 break;
 
